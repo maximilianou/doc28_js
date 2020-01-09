@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  dev: 
+    image: node:alpine
+    volumes:
+     - .:/usr/src/service
+    working_dir: /usr/src/service
+    command: npm run dev
+    ports: 
+      - 1234:3000
+networks:
+  net_intranet: 

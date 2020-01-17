@@ -8,6 +8,11 @@ services:
     command: npm run start
     ports: 
       - 1234:3000
+    environment:
+      - NODE_ENV=development
+    networks:
+      - net_intranet
+
   notes: 
     image: node:alpine
     volumes:
@@ -16,6 +21,11 @@ services:
     command: npm run start
     ports: 
       - 1222:3000
+    environment:
+      - NODE_ENV=development
+    networks:
+      - net_intranet
+
   users: 
     image: node:alpine
     volumes:
@@ -24,5 +34,10 @@ services:
     command: npm run start
     ports: 
       - 1333:3000      
+    environment:
+      - NODE_ENV=development
+    networks:
+      - net_intranet
+  
 networks:
   net_intranet: 

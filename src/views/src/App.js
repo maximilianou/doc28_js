@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import './notes/Note'
+import Home from './notes/Home';
+
 /// https://www.freecodecamp.org/news/fullstack-react-blog-app-with-express-and-psql/
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       <header className="App-header">
           Learning
       </header>
-      <Note />
+      <Home />
     </div>
   );
 }

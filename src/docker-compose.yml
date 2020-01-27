@@ -7,7 +7,7 @@ services:
     working_dir: /srv
     command: npm run start
     ports: 
-      - 1234:3000
+      - 2020:3000
     environment:
       - NODE_ENV=development
     networks:
@@ -20,7 +20,7 @@ services:
     working_dir: /srv
     command: npm run start
     ports: 
-      - 1222:3000
+      - 2022:3000
     environment:
       - NODE_ENV=development
     networks:
@@ -33,7 +33,7 @@ services:
     working_dir: /srv
     command: npm run start
     ports: 
-      - 1333:3000      
+      - 2024:3000      
     environment:
       - NODE_ENV=development
     networks:

@@ -40,4 +40,4 @@ services:
       - net_intranet
   
 networks:
-  net_intranet: 
+  net_intranet: {}

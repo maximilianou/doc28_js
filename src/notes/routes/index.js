@@ -22,4 +22,50 @@ router.get('/check/time', (req, res) => {
 		})
 })
 
+// Posts
+
+router.get('/api/allposts', (req, res, next) => {
+  pool.query(' SELECT * FROM POSTS ORDER BY date_created DESC ', 
+  (q_err, q_res)=>{
+     res.json(q_res.rows);
+  });
+});
+
+router.post('/api/postdb', (req, res, next) => {
+  const values = [ req.body.title,
+				   req.body.body,
+				   req.body.uid,
+				   req.body.username
+				];
+  pool.query(` INSERT INTO posts( title, body, user_id, author, date_created )VALUES( $1, $2, $3, $4, NOW() ) `, values, 
+  (q_err, q_res) => {
+	  if( q_err ){
+        return next(q_err);
+	  }else{
+        req.json(q_res.rows);
+	  }
+  } );
+});
+
+// User Profile
+router.post('/api/userprofiledb', (req, res, next) => {
+  const values = [ req.body.profile.nickname,
+				   req.body.profile.email,
+				   req.body.profile.email_verified
+				];
+  pool.query(` INSERT INTO users(username, email, email_verified, date_created)VALUES( $1, $2, $3, NOW() ) ON CONFLICT DO NOTHING `, values, 
+  (q_err, q_res) => {
+     res.json(q_res.rows);
+  });
+});
+
+router.get('/api/userprofiledb', (req, res, next) => {
+  const email = req.query.email;
+  console.log(email);
+  pool.query(` SELECT * FROM users WHERE email = $1 `, [ email ], 
+  (q_err, q_res)=>{
+    res.json(q_res.rows);
+  });
+});
+
 module.exports = router
